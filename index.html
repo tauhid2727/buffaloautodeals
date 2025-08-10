@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buffalo Auto Deals</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; color: #333; }
+    header { background: #b30000; color: white; padding: 20px; text-align: center; }
+    header img { max-width: 220px; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; }
+    nav { display: flex; justify-content: center; background: #333; flex-wrap: wrap; }
+    nav a { color: white; padding: 14px 20px; text-decoration: none; display: block; }
+    nav a:hover { background: #b30000; }
+    .hero { background: url('https://images.unsplash.com/photo-1549921296-3a0d3b6fa6bb') center/cover no-repeat; color: white; padding: 80px 20px; text-align: center; }
+    .container { padding: 20px; max-width: 1100px; margin: auto; }
+    .car-listing { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .car { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .car img { width: 100%; border-radius: 5px; }
+    iframe { width: 100%; height: 300px; border: 0; }
+    form { display: flex; flex-direction: column; gap: 10px; }
+    input, textarea { padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    button { background: #b30000; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+    .testimonials { background: white; padding: 20px; margin-top: 40px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 20px; }
+    .gallery img { width: 100%; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- When you upload logo.png to the repo root, it will display here -->
+    <img src="logo.png" alt="Buffalo Auto Deals Logo">
+    <h1>Buffalo Auto Deals</h1>
+    <p>Reliable Rides. Best Deals.</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#inventory">Inventory</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section class="hero" id="home">
+    <h2>Your Trusted Car Flipping Source in Buffalo</h2>
+    <p>Budget cars with minor fixes — high value, low cost.</p>
+  </section>
+
+  <section class="container" id="inventory">
+    <h2>Available Inventory</h2>
+    <div class="car-listing">
+      <div class="car">
+        <img src="https://images.unsplash.com/photo-1600181959111-47d4b140d4a5" alt="Honda Civic 2012">
+        <h3>2012 Honda Civic</h3>
+        <p>Mileage: 120,000 miles</p>
+        <p>Price: $5,200</p>
+      </div>
+      <div class="car">
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Toyota Corolla 2010">
+        <h3>2010 Toyota Corolla</h3>
+        <p>Mileage: 135,000 miles</p>
+        <p>Price: $4,700</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container testimonials" id="testimonials">
+    <h2>What Our Customers Say</h2>
+    <p>"Great value for money! I got my car within a day and it’s running like new." – Sarah K.</p>
+    <p>"Buffalo Auto Deals made my car buying experience so easy and affordable." – Mike D.</p>
+  </section>
+
+  <section class="container" id="gallery">
+    <h2>Flip Gallery</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1597009511514-640f4f5fd0b9" alt="Before Fix">
+      <img src="https://images.unsplash.com/photo-1588776814546-3f92cbb11317" alt="After Fix">
+    </div>
+  </section>
+
+  <section class="container" id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: tauhid27@gmail.com</p>
+    <p>Phone: +1 (226) 924-5033</p>
+    <p>Address: 341 N Creek Drive, Depew, NY 14043, USA</p>
+
+    <h3>Send us a message</h3>
+    <form action="https://formspree.io/f/moqyvpbw" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+
+    <h3>Find Us on the Map</h3>
+    <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBM-sample-fake-key-xQ0hdK4Ko&q=341+N+Creek+Drive,+Depew,+NY+14043" allowfullscreen></iframe>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Buffalo Auto Deals. All rights reserved.</p>
+  </footer>
+
+  <!-- Live chat (replace with your real Tawk.to ID when ready) -->
+  <script src="https://embed.tawk.to/64da0f47cc26a871b028fb53/default" async></script>
+</body>
+</html>
