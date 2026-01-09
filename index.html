@@ -172,10 +172,82 @@
   <script src="https://embed.tawk.to/64da0f47cc26a871b028fb53/default" async></script>
 <script type="module">
   import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
+  <script type="module">
+  import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
+
   Chatbot.init({
     chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
     apiHost: "https://cloud.flowiseai.com",
+    theme: {
+      chatWindow: {
+        renderHTML: true
+      }
+    }
   });
 </script>
+
+</script>
+    <!-- Quick Contact Buttons (Floating) -->
+<style>
+  .bad-quick-actions {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 99999;
+    font-family: Arial, sans-serif;
+  }
+  .bad-quick-actions a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 10px 25px rgba(0,0,0,.18);
+    transition: transform .15s ease;
+  }
+  .bad-quick-actions a:hover { transform: translateY(-2px); }
+  .bad-call { background: #111; }
+  .bad-wa { background: #25D366; }
+  .bad-live { background: #2563eb; }
+  .bad-callback { background: #b30000; }
+  .bad-icon {
+    width: 22px; height: 22px;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    background: rgba(255,255,255,.18);
+    border-radius: 999px;
+    font-size: 14px;
+    line-height: 1;
+  }
+  @media (max-width: 520px) {
+    .bad-quick-actions a span.label { display:none; }
+    .bad-quick-actions a { padding: 12px; }
+  }
+</style>
+
+<div class="bad-quick-actions" aria-label="Quick contact actions">
+  <a class="bad-call" href="tel:+12269245033" aria-label="Call now">
+    <span class="bad-icon">📞</span><span class="label">Call now</span>
+  </a>
+
+  <a class="bad-wa" href="https://wa.me/12269245033?text=Hi%20Buffalo%20Auto%20Deals!%20I%20need%20help%20with%20a%20car." target="_blank" rel="noopener" aria-label="WhatsApp">
+    <span class="bad-icon">💬</span><span class="label">WhatsApp</span>
+  </a>
+
+  <a class="bad-live" href="https://cloud.flowiseai.com/chatbot/7a298141-846d-4fc7-aefe-151611bf8399" target="_blank" rel="noopener" aria-label="Live chat">
+    <span class="bad-icon">👨‍💼</span><span class="label">Live chat</span>
+  </a>
+
+  <a class="bad-callback" href="#contact" aria-label="Request callback">
+    <span class="bad-icon">📅</span><span class="label">Request callback</span>
+  </a>
+</div>
+    
 </body>
 </html>
