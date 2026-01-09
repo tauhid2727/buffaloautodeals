@@ -259,9 +259,13 @@
   <script type="module">
   import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
 
-  Chatbot.init({
-    chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
-    apiHost: "https://cloud.flowiseai.com",
+  window.FlowiseChatbot = Chatbot;
+
+Chatbot.init({
+  chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
+  apiHost: "https://cloud.flowiseai.com",
+});
+,
     theme: {
       chatWindow: {
         renderHTML: true
@@ -271,48 +275,7 @@
 </script>
 
 </script>
-    <!-- Quick Contact Buttons (Floating) -->
-<style>
-  .bad-quick-actions {
-    position: fixed;
-    left: 18px;
-    bottom: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 99999;
-    font-family: Arial, sans-serif;
-  }
-  .bad-quick-actions a {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 14px;
-    border-radius: 999px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 700;
-    box-shadow: 0 10px 25px rgba(0,0,0,.18);
-    transition: transform .15s ease;
-  }
-  .bad-quick-actions a:hover { transform: translateY(-2px); }
-  .bad-call { background: #111; }
-  .bad-wa { background: #25D366; }
-  .bad-live { background: #2563eb; }
-  .bad-callback { background: #b30000; }
-  .bad-icon {
-    width: 22px; height: 22px;
-    display: inline-flex;
-    align-items: center; justify-content: center;
-    background: rgba(255,255,255,.18);
-    border-radius: 999px;
-    font-size: 14px;
-    line-height: 1;
-  }
-  @media (max-width: 520px) {
-    .bad-quick-actions a span.label { display:none; }
-    .bad-quick-actions a { padding: 12px; }
-  }
+
 </style>
 
 <div class="bad-quick-actions" aria-label="Quick contact actions">
@@ -332,6 +295,17 @@
     <span class="bad-icon">📅</span><span class="label">Request callback</span>
   </a>
 </div>
-    
+    <script>
+  function openChat() {
+    if (window.FlowiseChatbot && typeof window.FlowiseChatbot.open === "function") {
+      window.FlowiseChatbot.open();
+    } else {
+      // fallback: click the chat bubble if Flowise doesn't expose open()
+      const btn = document.querySelector("flowise-chatbot") || document.querySelector(".flowise-chatbot");
+      alert("Chat is loading. If it doesn't open, please click the chat bubble at bottom-right.");
+    }
+  }
+</script>
+
 </body>
 </html>
