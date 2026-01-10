@@ -259,17 +259,17 @@ flowise-chatbot,
   <script>
 <script>
   <script>
+  <script>
   function openChat() {
     const el = document.querySelector('flowise-chatbot');
     if (!el) return;
 
-    // Try to click the bubble button inside Flowise widget (shadow DOM)
     const tryClick = () => {
       try {
         const root = el.shadowRoot;
         if (!root) return false;
 
-        // Common selectors for the floating bubble button
+        // The bubble/floating button is usually inside shadow DOM
         const btn =
           root.querySelector('button[aria-label*="chat"]') ||
           root.querySelector('button[aria-label*="Chat"]') ||
@@ -285,13 +285,13 @@ flowise-chatbot,
       return false;
     };
 
-    // Try immediately, then retry a few times while widget finishes loading
     if (tryClick()) return;
+
     let tries = 0;
     const t = setInterval(() => {
       tries++;
-      if (tryClick() || tries >= 10) clearInterval(t);
-    }, 300);
+      if (tryClick() || tries >= 12) clearInterval(t);
+    }, 250);
   }
 </script>
 
@@ -299,16 +299,16 @@ flowise-chatbot,
 
 </script>
 
+</script>
 <!-- Flowise Chatbot -->
 <script type="module">
   import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
-
-  window.FlowiseChatbot = Chatbot;
-
   Chatbot.init({
     chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
     apiHost: "https://cloud.flowiseai.com"
   });
+</script>
+
 </script>
 
 </body>
