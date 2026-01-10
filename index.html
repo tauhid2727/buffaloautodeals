@@ -261,29 +261,30 @@ flowise-chatbot,
   <script>
   <script>
  <script>
-  function openChat() {
-    const findAndClick = () => {
-      const el = document.querySelector("flowise-chatbot");
-      if (!el || !el.shadowRoot) return false;
-
-      // Bubble button lives inside Flowise shadow DOM
-      const btn =
-        el.shadowRoot.querySelector('button[aria-label*="chat" i]') ||
-        el.shadowRoot.querySelector("button") ||
-        el.shadowRoot.querySelector(".floating-button");
-
-      if (btn) { btn.click(); return true; }
-      return false;
-    };
-
-    // Try now + retry for ~5 seconds while Flowise loads
-    if (findAndClick()) return;
-    let tries = 0;
-    const t = setInterval(() => {
-      tries++;
-      if (findAndClick() || tries >= 20) clearInterval(t);
-    }, 250);
+  <script>
+function openChat() {
+  const widget = document.querySelector('flowise-chatbot');
+  if (!widget) {
+    console.log("Flowise widget not found yet");
+    return;
   }
+
+  const root = widget.shadowRoot;
+  if (!root) {
+    console.log("Shadow root not ready yet");
+    return;
+  }
+
+  // Find the floating bubble button inside Flowise
+  const bubbleBtn = root.querySelector('button');
+  if (bubbleBtn) {
+    bubbleBtn.click();
+  } else {
+    console.log("Bubble button not found");
+  }
+}
+</script>
+
 </script>
 
 </script>
