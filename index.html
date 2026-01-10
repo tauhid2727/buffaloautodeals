@@ -258,11 +258,40 @@ flowise-chatbot,
 
   
   <script>
+<script>
 function openChat() {
+  // 1) Try the Flowise web component (most common)
+  const el = document.querySelector('flowise-chatbot');
+
+  if (el) {
+    // Some builds expose open/toggle methods
+    if (typeof el.open === "function") { el.open(); return false; }
+    if (typeof el.toggle === "function") { el.toggle(); return false; }
+
+    // Some builds use an "open" attribute
+    el.setAttribute("open", "true");
+    return false;
+  }
+
+  // 2) Try older pattern (if available)
   if (window.FlowiseChatbot && typeof window.FlowiseChatbot.open === "function") {
     window.FlowiseChatbot.open();
+    return false;
   }
+
+  // 3) Last fallback: click the bubble button (selectors vary)
+  const bubbleBtn =
+    document.querySelector('button[aria-label*="chat" i]') ||
+    document.querySelector('.chatbot-button') ||
+    document.querySelector('.floating-button') ||
+    document.querySelector('#flowise-chatbot-button');
+
+  if (bubbleBtn) bubbleBtn.click();
+
+  return false;
 }
+</script>
+
 </script>
 
 <!-- Flowise Chatbot -->
