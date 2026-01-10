@@ -141,8 +141,9 @@ flowise-chatbot,
   </div>
 
   <div class="top-right-buttons">
-    <a href="#" onclick="openChat(); return false;" class="top-btn live">👨 Live chat</a>
-  </div>
+    <a href="#" onclick="openChat(); return false;" class="top-btn live">👨‍💼 Live chat</a>
+</div>
+
 </div>
 
  </div>
@@ -270,22 +271,12 @@ flowise-chatbot,
 <script type="module">
   import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
 
+  window.FlowiseChatbot = Chatbot;
+
   Chatbot.init({
     chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
-    apiHost: "https://cloud.flowiseai.com",
+    apiHost: "https://cloud.flowiseai.com"
   });
-</script>
-<script>
-  function openChat() {
-    // Try common ways Flowise exposes open/toggle
-    const el = document.querySelector('flowise-chatbot');
-    if (el && el.open) { el.open(); return; }
-    if (el && el.toggle) { el.toggle(); return; }
-
-    // Fallback: simulate click on the bubble button if it exists
-    const bubbleBtn = document.querySelector('button[aria-label*="chat"], .chatbot-button, .floating-button');
-    if (bubbleBtn) bubbleBtn.click();
-  }
 </script>
 
 </body>
