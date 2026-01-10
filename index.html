@@ -141,10 +141,9 @@ flowise-chatbot,
   </div>
 
   <div class="top-right-buttons">
-    <a href="#" onclick="openChat(); return false;" class="top-btn live">👨‍💼 Live chat</a>
+  <a href="#" onclick="openChat(); return false;" class="top-btn live">👨‍💼 Live chat</a>
 </div>
 
-</div>
 
  </div>
 
@@ -259,37 +258,43 @@ flowise-chatbot,
   
   <script>
 <script>
-function openChat() {
-  // 1) Try the Flowise web component (most common)
-  const el = document.querySelector('flowise-chatbot');
+  <script>
+  function openChat() {
+    const el = document.querySelector('flowise-chatbot');
+    if (!el) return;
 
-  if (el) {
-    // Some builds expose open/toggle methods
-    if (typeof el.open === "function") { el.open(); return false; }
-    if (typeof el.toggle === "function") { el.toggle(); return false; }
+    // Try to click the bubble button inside Flowise widget (shadow DOM)
+    const tryClick = () => {
+      try {
+        const root = el.shadowRoot;
+        if (!root) return false;
 
-    // Some builds use an "open" attribute
-    el.setAttribute("open", "true");
-    return false;
+        // Common selectors for the floating bubble button
+        const btn =
+          root.querySelector('button[aria-label*="chat"]') ||
+          root.querySelector('button[aria-label*="Chat"]') ||
+          root.querySelector('button') ||
+          root.querySelector('.floating-button') ||
+          root.querySelector('.chatbot-button');
+
+        if (btn) {
+          btn.click();
+          return true;
+        }
+      } catch (e) {}
+      return false;
+    };
+
+    // Try immediately, then retry a few times while widget finishes loading
+    if (tryClick()) return;
+    let tries = 0;
+    const t = setInterval(() => {
+      tries++;
+      if (tryClick() || tries >= 10) clearInterval(t);
+    }, 300);
   }
+</script>
 
-  // 2) Try older pattern (if available)
-  if (window.FlowiseChatbot && typeof window.FlowiseChatbot.open === "function") {
-    window.FlowiseChatbot.open();
-    return false;
-  }
-
-  // 3) Last fallback: click the bubble button (selectors vary)
-  const bubbleBtn =
-    document.querySelector('button[aria-label*="chat" i]') ||
-    document.querySelector('.chatbot-button') ||
-    document.querySelector('.floating-button') ||
-    document.querySelector('#flowise-chatbot-button');
-
-  if (bubbleBtn) bubbleBtn.click();
-
-  return false;
-}
 </script>
 
 </script>
