@@ -252,25 +252,7 @@
     <p>&copy; 2025 Buffalo Auto Deals. All rights reserved.</p>
   </footer>
 
-  <!-- Live chat (replace with your real Tawk.to ID when ready) -->
-  <script src="https://embed.tawk.to/64da0f47cc26a871b028fb53/default" async></script>
-<script type="module">
-  import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
-  <script type="module">
-  import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
-
-  window.FlowiseChatbot = Chatbot;
-
-Chatbot.init({
-chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
-  apiHost: "https://cloud.flowiseai.com",
-});
-,
-    theme: {
-      chatWindow: {
-        renderHTML: true
       }
-    }
   });
 </script>
 
@@ -288,6 +270,15 @@ chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
       alert("Chat is loading. If it doesn't open, please click the chat bubble at bottom-right.");
     }
   }
+</script>
+<!-- Flowise Chatbot -->
+<script type="module">
+  import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
+
+  Chatbot.init({
+    chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
+    apiHost: "https://cloud.flowiseai.com",
+  });
 </script>
 
 </body>
