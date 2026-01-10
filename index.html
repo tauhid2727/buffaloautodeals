@@ -256,17 +256,15 @@ flowise-chatbot,
 
 </style>
 
-    <script>
-  function openChat() {
-    if (window.FlowiseChatbot && typeof window.FlowiseChatbot.open === "function") {
-      window.FlowiseChatbot.open();
-    } else {
-      // fallback: click the chat bubble if Flowise doesn't expose open()
-      const btn = document.querySelector("flowise-chatbot") || document.querySelector(".flowise-chatbot");
-      alert("Chat is loading. If it doesn't open, please click the chat bubble at bottom-right.");
-    }
+  
+  <script>
+function openChat() {
+  if (window.FlowiseChatbot && typeof window.FlowiseChatbot.open === "function") {
+    window.FlowiseChatbot.open();
   }
+}
 </script>
+
 <!-- Flowise Chatbot -->
 <script type="module">
   import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
