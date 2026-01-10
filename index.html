@@ -230,12 +230,26 @@ flowise-chatbot,
     <p>Address: 341 N Creek Drive, Depew, NY 14043, USA</p>
 
     <h3>Send us a message</h3>
-    <form action="https://formspree.io/f/moqyvpbw" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
+    <form id="leadForm">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="tel" name="phone" placeholder="Your Phone" required>
+  <select name="bestTime" required>
+    <option value="">Best time to call</option>
+    <option value="Morning">Morning</option>
+    <option value="Afternoon">Afternoon</option>
+    <option value="Evening">Evening</option>
+  </select>
+
+  <textarea name="message" placeholder="Your Message" required></textarea>
+
+  <label>
+    <input type="checkbox" name="whatsappOptIn">
+    Contact me on WhatsApp
+  </label>
+
+  <button type="submit">Send</button>
+</form>
+
 
     <h3>Find Us on the Map</h3>
     <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBM-sample-fake-key-xQ0hdK4Ko&q=341+N+Creek+Drive,+Depew,+NY+14043" allowfullscreen></iframe>
@@ -290,6 +304,47 @@ Chatbot.init({
 </script>
 
 
+</script>
+<script>
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxX8BvgBG2LaGKys6ddmvGeL8-JIrRP0kb262-lf0xLo-feTV-M5LZ5UAQMlffcgouRsw/exec";
+const AUTH_TOKEN = "https://script.google.com/macros/s/AKfycbxX8BvgBG2LaGKys6ddmvGeL8-JlRrPOkb262-lf0xLo-feTV-M5LZ5UAQMIffcgouRsw/exec";
+
+document.getElementById("leadForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+
+  const data = {
+    name: form.name.value,
+    phone: form.phone.value,
+    bestTime: form.bestTime.value,
+    message: form.message.value,
+    pageUrl: window.location.href,
+    source: "Website Form",
+    whatsappOptIn: form.whatsappOptIn.checked ? "Yes" : "No",
+    token: AUTH_TOKEN
+  };
+
+  try {
+    const response = await fetch(WEB_APP_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (result.status === "success") {
+      alert("✅ Thank you! We will contact you shortly.");
+      form.reset();
+    } else {
+      alert("❌ Something went wrong. Please try again.");
+    }
+
+  } catch (error) {
+    alert("❌ Network error. Please try again later.");
+  }
+});
 </script>
 
 </body>
