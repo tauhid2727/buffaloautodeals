@@ -141,14 +141,8 @@ flowise-chatbot,
   </div>
 
   <div class="top-right-buttons">
-    <a href="tel:+12269245033" class="top-btn call">📞 Call now</a>
-
-    <a
-      href="https://wa.me/12269245033?text=Hi%20Buffalo%20Auto%20Deals%2C%20I%20need%20help%20with%20a%20vehicle."
-      target="_blank"
-      rel="noopener"
-      class="top-btn whatsapp"
-    >💬 WhatsApp</a>
+  <a href="#" onclick="openChat(); return false;" class="top-btn live">👨‍💼 Live chat</a>
+</div>
 
     <a href="javascript:void(0)" onclick="openChat()" class="top-btn live">👨‍💼 Live chat</a>
 
@@ -284,6 +278,18 @@ flowise-chatbot,
     chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
     apiHost: "https://cloud.flowiseai.com",
   });
+</script>
+<script>
+  function openChat() {
+    // Try common ways Flowise exposes open/toggle
+    const el = document.querySelector('flowise-chatbot');
+    if (el && el.open) { el.open(); return; }
+    if (el && el.toggle) { el.toggle(); return; }
+
+    // Fallback: simulate click on the bubble button if it exists
+    const bubbleBtn = document.querySelector('button[aria-label*="chat"], .chatbot-button, .floating-button');
+    if (bubbleBtn) bubbleBtn.click();
+  }
 </script>
 
 </body>
