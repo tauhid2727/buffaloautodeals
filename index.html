@@ -260,46 +260,34 @@ flowise-chatbot,
 <script>
   <script>
   <script>
+ <script>
   function openChat() {
-    const el = document.querySelector('flowise-chatbot');
-    if (!el) return;
+    const findAndClick = () => {
+      const el = document.querySelector("flowise-chatbot");
+      if (!el || !el.shadowRoot) return false;
 
-    const tryClick = () => {
-      try {
-        const root = el.shadowRoot;
-        if (!root) return false;
+      // Bubble button lives inside Flowise shadow DOM
+      const btn =
+        el.shadowRoot.querySelector('button[aria-label*="chat" i]') ||
+        el.shadowRoot.querySelector("button") ||
+        el.shadowRoot.querySelector(".floating-button");
 
-        // The bubble/floating button is usually inside shadow DOM
-        const btn =
-          root.querySelector('button[aria-label*="chat"]') ||
-          root.querySelector('button[aria-label*="Chat"]') ||
-          root.querySelector('button') ||
-          root.querySelector('.floating-button') ||
-          root.querySelector('.chatbot-button');
-
-        if (btn) {
-          btn.click();
-          return true;
-        }
-      } catch (e) {}
+      if (btn) { btn.click(); return true; }
       return false;
     };
 
-    if (tryClick()) return;
-
+    // Try now + retry for ~5 seconds while Flowise loads
+    if (findAndClick()) return;
     let tries = 0;
     const t = setInterval(() => {
       tries++;
-      if (tryClick() || tries >= 12) clearInterval(t);
+      if (findAndClick() || tries >= 20) clearInterval(t);
     }, 250);
   }
 </script>
 
 </script>
 
-</script>
-
-</script>
 <!-- Flowise Chatbot -->
 <script type="module">
   import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
@@ -307,8 +295,6 @@ flowise-chatbot,
     chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
     apiHost: "https://cloud.flowiseai.com"
   });
-</script>
-
 </script>
 
 </body>
