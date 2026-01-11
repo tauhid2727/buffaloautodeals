@@ -99,7 +99,6 @@ flowise-chatbot,
   z-index: 2147483647 !important;
 }
 
-    <style>
   /* keep your current CSS here; leaving your styles as-is */
 
   body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; color: #333; }
@@ -169,7 +168,9 @@ flowise-chatbot,
     <h2>Available Inventory</h2>
     <div class="car-listing">
       <div class="car">
-        <img src="https://images.unsplash.com/photo-1600181959111-47d4b140d4a5" alt="Honda Civic 2012" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2"
+     alt="2012 Honda Civic EX"
+     loading="lazy" width="1200" height="800">
         <h3>2012 Honda Civic</h3>
         <p>Mileage: 120,000 miles</p>
         <p>Price: $5,200</p>
@@ -181,7 +182,9 @@ flowise-chatbot,
         <p>Price: $4,700</p>
       </div>
       <div class="car">
-  <img src="https://images.unsplash.com/photo-1549924231-f129b911e442" alt="Ford Fusion" loading="lazy">
+  <img src="https://images.unsplash.com/photo-1549924231-f129b911e442"
+     alt="2013 Ford Fusion SE silver sedan"
+     loading="lazy" width="1200" height="800">
        alt="2013 Ford Fusion SE silver sedan, front 3/4 view"
        loading="lazy" width="1200" height="800">
   <h3>2013 Ford Fusion SE</h3>
@@ -255,38 +258,22 @@ flowise-chatbot,
   </section>
 
   <footer>
-    <p>&copy; 2025 Buffalo Auto Deals. All rights reserved.</p>
-  </footer>
+  <p>&copy; 2025 Buffalo Auto Deals. All rights reserved.</p>
+</footer>
 
-      }
-  });
-  <script>
+<script>
 function openChat() {
   const widget = document.querySelector('flowise-chatbot');
-  if (!widget) {
-    console.log("Flowise widget not found yet");
-    return;
-  }
-
+  if (!widget) return console.log("Flowise widget not found yet");
   const root = widget.shadowRoot;
-  if (!root) {
-    console.log("Shadow root not ready yet");
-    return;
-  }
-
-  // Find the floating bubble button inside Flowise
+  if (!root) return console.log("Shadow root not ready yet");
   const bubbleBtn = root.querySelector('button');
-  if (bubbleBtn) {
-    bubbleBtn.click();
-  } else {
-    console.log("Bubble button not found");
-  }
+  bubbleBtn ? bubbleBtn.click() : console.log("Bubble button not found");
 }
 </script>
 
 <script type="module">
 import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
-
 window.FlowiseChatbot = Chatbot;
 
 Chatbot.init({
@@ -295,14 +282,12 @@ Chatbot.init({
 });
 </script>
 
-  <script>
-  <script>
+<script>
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxX8BvgBG2LaGKys6ddmvGeL8-JlRrP0kb262-lf0xLo-feTV-M5LZ5UAQMlffcgouRsw/exec";
 const AUTH_TOKEN = "BAD_webhook_2026_9fA3Kp82LmQx77Z";
 
-document.getElementById("leadForm").addEventListener("submit", async function(e) {
+document.getElementById("leadForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-
   const form = e.target;
 
   const data = {
@@ -330,13 +315,14 @@ document.getElementById("leadForm").addEventListener("submit", async function(e)
       form.reset();
     } else {
       alert("❌ Something went wrong. Please try again.");
+      console.log(result);
     }
-
   } catch (err) {
     alert("❌ Network error. Please try again later.");
     console.log(err);
   }
 });
 </script>
+
 </body>
 </html>
