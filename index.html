@@ -125,7 +125,8 @@ flowise-chatbot,
 <div class="top-bar">
   <div class="top-left">
     <span>📞 Call +1 (226) 924-5033</span>
-    <span>✉️ Email us</span>
+   <a class="top-btn call" href="mailto:tauhid27@gmail.com">✉️ Email us</a>
+
   </div>
 
   <div class="top-right-buttons">
@@ -219,39 +220,9 @@ flowise-chatbot,
     <p>Email: tauhid27@gmail.com</p>
     <p>Phone: +1 (226) 924-5033</p>
     <p>Address: 341 N Creek Drive, Depew, NY 14043, USA</p>
+<h3>Send us a message</h3>
 
-    <h3>Send us a message</h3>
-        <h3>Find Us on the Map</h3>
-   <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCPojV0Rpxs9LrjT5WKX6BwGrbLfUK8Vzc&q=341+N+Creek+Drive,+Depew,+NY+14043"></iframe>
-
-
-  </section>
-
-  <footer>
-  <p>&copy; 2025 Buffalo Auto Deals. All rights reserved.</p>
-</footer>
-
-<script>
-function openChat() {
-  const widget = document.querySelector('flowise-chatbot');
-  if (!widget) return console.log("Flowise widget not found yet");
-  const root = widget.shadowRoot;
-  if (!root) return console.log("Shadow root not ready yet");
-  const bubbleBtn = root.querySelector('button');
-  bubbleBtn ? bubbleBtn.click() : console.log("Bubble button not found");
-}
-</script>
-
-<script type="module">
-import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
-window.FlowiseChatbot = Chatbot;
-
-Chatbot.init({
-  chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
-  apiHost: "https://cloud.flowiseai.com"
-});
-</script>
- <form name="leadForm" method="POST" data-netlify="true" netlify>
+<form name="leadForm" method="POST" data-netlify="true" netlify>
   <input type="hidden" name="form-name" value="leadForm" />
 
   <input type="text" name="name" placeholder="Your Name" required>
@@ -273,6 +244,45 @@ Chatbot.init({
 
   <button type="submit">Send</button>
 </form>
+
+<h3>Find Us on the Map</h3>
+<iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCPojV0Rpxs9LrjT5WKX6BwGrbLfUK8Vzc&q=341+N+Creek+Drive,+Depew,+NY+14043"></iframe>
+    
+  </section>
+
+  <footer>
+  <p>&copy; 2025 Buffalo Auto Deals. All rights reserved.</p>
+</footer>
+
+<script>
+function openChat(retries = 25) {
+  const widget = document.querySelector('flowise-chatbot');
+  if (!widget || !widget.shadowRoot) {
+    if (retries > 0) return setTimeout(() => openChat(retries - 1), 200);
+    return console.log("Flowise widget not ready");
+  }
+
+  const root = widget.shadowRoot;
+  const btn =
+    root.querySelector('button') ||
+    root.querySelector('[aria-label*="chat" i]') ||
+    root.querySelector('.chatbot-button') ||
+    root.querySelector('#chatbot-bubble-button');
+
+  if (btn) btn.click();
+  else console.log("Chat open button not found");
+}
+</script>
+
+<script type="module">
+import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
+window.FlowiseChatbot = Chatbot;
+
+Chatbot.init({
+  chatflowid: "7a298141-846d-4fc7-aefe-151611bf8399",
+  apiHost: "https://cloud.flowiseai.com"
+});
+</script>
 
 </body>
 </html>
