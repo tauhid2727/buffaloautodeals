@@ -271,48 +271,28 @@ Chatbot.init({
   apiHost: "https://cloud.flowiseai.com"
 });
 </script>
+<form name="leadForm" method="POST" data-netlify="true">
+  <input type="hidden" name="form-name" value="leadForm" />
 
-  <script>
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxX8BvgBG2LaGKys6ddmvGeL8-JlRrP0kb262-lf0xLo-feTV-M5LZ5UAQMlffcgouRsw/exec";
-const AUTH_TOKEN = "BAD_webhook_2026_9fA3Kp82LmQx77Z";
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="tel" name="phone" placeholder="Your Phone" required>
 
-document.getElementById("leadForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+  <select name="bestTime" required>
+    <option value="">Best time to call</option>
+    <option>Morning</option>
+    <option>Afternoon</option>
+    <option>Evening</option>
+  </select>
 
-  const form = e.target;
-  const fd = new FormData();
+  <textarea name="message" placeholder="Your Message" required></textarea>
 
-  fd.append("name", form.name.value);
-  fd.append("phone", form.phone.value);
-  fd.append("bestTime", form.bestTime.value);
-  fd.append("message", form.message.value);
-  fd.append("pageUrl", window.location.href);
-  fd.append("source", "Website Form");
-  fd.append("whatsappOptIn", form.whatsappOptIn.checked ? "Yes" : "No");
-  fd.append("token", AUTH_TOKEN);
+  <label>
+    <input type="checkbox" name="whatsappOptIn">
+    Contact me on WhatsApp
+  </label>
 
-  try {
-    const response = await fetch(WEB_APP_URL, {
-      method: "POST",
-      body: fd
-    });
-
-    // many GAS scripts return text, not JSON
-    const text = await response.text();
-    console.log("Server response:", text);
-
-    if (text.toLowerCase().includes("success")) {
-      alert("✅ Thank you! We will contact you shortly.");
-      form.reset();
-    } else {
-      alert("❌ Something went wrong. Please try again.");
-    }
-  } catch (err) {
-    alert("❌ Network error. Please try again later.");
-    console.log(err);
-  }
-});
-</script>
-
+  <button type="submit">Send</button>
+</form>
+ 
 </body>
 </html>
