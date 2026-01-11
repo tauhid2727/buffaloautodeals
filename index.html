@@ -221,27 +221,7 @@ flowise-chatbot,
     <p>Address: 341 N Creek Drive, Depew, NY 14043, USA</p>
 
     <h3>Send us a message</h3>
-    <form id="leadForm">
-  <input type="text" name="name" placeholder="Your Name" required>
-  <input type="tel" name="phone" placeholder="Your Phone" required>
-  <select name="bestTime" required>
-    <option value="">Best time to call</option>
-    <option value="Morning">Morning</option>
-    <option value="Afternoon">Afternoon</option>
-    <option value="Evening">Evening</option>
-  </select>
-
-  <textarea name="message" placeholder="Your Message" required></textarea>
-
-  <label>
-    <input type="checkbox" name="whatsappOptIn">
-    Contact me on WhatsApp
-  </label>
-
-  <button type="submit">Send</button>
-</form>
-
-    <h3>Find Us on the Map</h3>
+        <h3>Find Us on the Map</h3>
    <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCPojV0Rpxs9LrjT5WKX6BwGrbLfUK8Vzc&q=341+N+Creek+Drive,+Depew,+NY+14043"></iframe>
 
 
@@ -271,7 +251,7 @@ Chatbot.init({
   apiHost: "https://cloud.flowiseai.com"
 });
 </script>
-<form name="leadForm" method="POST" data-netlify="true">
+ <form name="leadForm" method="POST" data-netlify="true" netlify>
   <input type="hidden" name="form-name" value="leadForm" />
 
   <input type="text" name="name" placeholder="Your Name" required>
@@ -279,20 +259,20 @@ Chatbot.init({
 
   <select name="bestTime" required>
     <option value="">Best time to call</option>
-    <option>Morning</option>
-    <option>Afternoon</option>
-    <option>Evening</option>
+    <option value="Morning">Morning</option>
+    <option value="Afternoon">Afternoon</option>
+    <option value="Evening">Evening</option>
   </select>
 
   <textarea name="message" placeholder="Your Message" required></textarea>
 
   <label>
-    <input type="checkbox" name="whatsappOptIn">
+    <input type="checkbox" name="whatsappOptIn" value="Yes">
     Contact me on WhatsApp
   </label>
 
   <button type="submit">Send</button>
 </form>
- 
+
 </body>
 </html>
