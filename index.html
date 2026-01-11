@@ -271,40 +271,40 @@ Chatbot.init({
 });
 </script>
 
-<script>
+  <script>
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxX8BvgBG2LaGKys6ddmvGeL8-JlRrP0kb262-lf0xLo-feTV-M5LZ5UAQMlffcgouRsw/exec";
 const AUTH_TOKEN = "BAD_webhook_2026_9fA3Kp82LmQx77Z";
 
 document.getElementById("leadForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const form = e.target;
 
-  const data = {
-    name: form.name.value,
-    phone: form.phone.value,
-    bestTime: form.bestTime.value,
-    message: form.message.value,
-    pageUrl: window.location.href,
-    source: "Website Form",
-    whatsappOptIn: form.whatsappOptIn.checked ? "Yes" : "No",
-    token: AUTH_TOKEN
-  };
+  const form = e.target;
+  const fd = new FormData();
+
+  fd.append("name", form.name.value);
+  fd.append("phone", form.phone.value);
+  fd.append("bestTime", form.bestTime.value);
+  fd.append("message", form.message.value);
+  fd.append("pageUrl", window.location.href);
+  fd.append("source", "Website Form");
+  fd.append("whatsappOptIn", form.whatsappOptIn.checked ? "Yes" : "No");
+  fd.append("token", AUTH_TOKEN);
 
   try {
     const response = await fetch(WEB_APP_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+      body: fd
     });
 
-    const result = await response.json();
+    // many GAS scripts return text, not JSON
+    const text = await response.text();
+    console.log("Server response:", text);
 
-    if (result.status === "success") {
+    if (text.toLowerCase().includes("success")) {
       alert("✅ Thank you! We will contact you shortly.");
       form.reset();
     } else {
       alert("❌ Something went wrong. Please try again.");
-      console.log(result);
     }
   } catch (err) {
     alert("❌ Network error. Please try again later.");
