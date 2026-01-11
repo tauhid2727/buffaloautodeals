@@ -124,7 +124,7 @@ flowise-chatbot,
   <body>
 <div class="top-bar">
   <div class="top-left">
-    <span>📞 Call +1 (226) 924-5033</span>
+    <a class="top-btn call" href="tel:+12269245033">📞 Call +1 (226) 924-5033</a>
    <a class="top-btn call" href="mailto:tauhid27@gmail.com">✉️ Email us</a>
 
   </div>
@@ -222,8 +222,11 @@ flowise-chatbot,
     <p>Address: 341 N Creek Drive, Depew, NY 14043, USA</p>
 <h3>Send us a message</h3>
 
-<form name="leadForm" method="POST" data-netlify="true" netlify>
-  <input type="hidden" name="form-name" value="leadForm" />
+<form name="leadForm" method="POST" data-netlify="true" netlify action="/thanks.html" data-netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" <p style="display:none;">
+  <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+</p>
+value="leadForm" />
 
   <input type="text" name="name" placeholder="Your Name" required>
   <input type="tel" name="phone" placeholder="Your Phone" required>
