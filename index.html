@@ -223,10 +223,12 @@ flowise-chatbot,
 <h3>Send us a message</h3>
 
 <form name="leadForm" method="POST" data-netlify="true" netlify action="/thanks.html" data-netlify-honeypot="bot-field">
-  <input type="hidden" name="form-name" <p style="display:none;">
-  <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-</p>
-value="leadForm" />
+  <input type="hidden" name="form-name" value="leadForm" />
+
+  <!-- Honeypot (spam protection) -->
+  <p style="display:none;">
+    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+  </p>
 
   <input type="text" name="name" placeholder="Your Name" required>
   <input type="tel" name="phone" placeholder="Your Phone" required>
